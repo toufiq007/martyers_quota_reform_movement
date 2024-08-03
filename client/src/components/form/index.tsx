@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { TextField, Button, Box } from "@mui/material";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 type IForm = {
@@ -16,11 +17,18 @@ type IForm = {
 };
 
 const CustomForm = () => {
-  const { register, handleSubmit } = useForm<IForm>();
+  const { register, handleSubmit, reset } = useForm<IForm>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const onSubmit = async (data: any) => {
+    setIsLoading(true);
+    setIsSuccess(false);
+    setIsError(false);
     console.log(data);
     const formData = new FormData();
+
     // append text files
     formData.append("name", data.name);
     formData.append("age", data.age.toString());
@@ -40,11 +48,20 @@ const CustomForm = () => {
         method: "POST",
         body: formData,
       });
+      if (response.ok) {
+        setIsLoading(false);
+        setIsSuccess(true);
+        reset();
+      }
 
       const result = await response.json();
+
       console.log(result);
     } catch (error) {
       console.error("Error submitting form data:", error);
+      setIsLoading(false);
+      setIsSuccess(false);
+      setIsError(true);
     }
   };
 
@@ -136,7 +153,7 @@ const CustomForm = () => {
       />
 
       <Button variant="contained" type="submit">
-        Submit
+        {isLoading ? "loading..." : "Submit"}
       </Button>
     </Box>
   );
