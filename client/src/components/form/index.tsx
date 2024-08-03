@@ -9,7 +9,7 @@ type IForm = {
   age: number;
   address: string;
   birthOfDate: string;
-  deathOfDate: string;
+  died: string;
   institution: string;
   causeOfDeath: string;
   history: History;
@@ -34,7 +34,7 @@ const CustomForm = () => {
     formData.append("age", data.age.toString());
     formData.append("address", data.address);
     formData.append("birthOfDate", data.birthOfDate);
-    formData.append("deathOfDate", data.deathOfDate);
+    formData.append("died", data.died);
     formData.append("institution", data.institution);
     formData.append("causeOfDeath", data.causeOfDeath);
     formData.append("history", data.history);
@@ -128,7 +128,7 @@ const CustomForm = () => {
       <TextField
         label="Date of death"
         variant="outlined"
-        {...register("deathOfDate")}
+        {...register("died")}
         size="small"
         fullWidth
       />

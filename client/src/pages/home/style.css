@@ -1,0 +1,17 @@
+
+.home_page{
+    background-color: aliceblue;
+}
+.banner_heading{
+    text-align: center;
+}
+
+.card_container{
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+

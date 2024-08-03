@@ -1,0 +1,27 @@
+.martyers_card {
+  background: rgb(174, 244, 174);
+  width: 300px;
+  height: auto;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.martyers_card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.martyers_card .martyers_name{
+    font-size: 18px;
+    font-weight: 600;
+}
+.martyers_card .martyers_institution {
+  font-size: 14px;
+}
+.martyers_card .martyers_died{
+  text-align: right;
+  display: block;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
