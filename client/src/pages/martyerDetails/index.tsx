@@ -1,8 +1,8 @@
 import { Button } from "@mui/material";
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/loader";
 import useMartyersDetails from "../../hooks/useMartyersDetails";
+import "./style.css"
 
 const MartyerDetails = () => {
   const { id } = useParams();
@@ -19,7 +19,6 @@ const MartyerDetails = () => {
         <Loader />
       ) : (
         <div>
-          <h1 className="martyers_name">{martyer?.people[0]?.name}</h1>
           <div
             className="martyers_container"
             style={{
@@ -37,6 +36,7 @@ const MartyerDetails = () => {
                 width: "600px",
               }}
             >
+              <h1 className="martyers_name">{martyer?.people[0]?.name}</h1>
               <img
                 style={{ width: "100%", height: "500px", objectFit: "cover" }}
                 src={`${martyer?.people[0]?.personalImage}`}

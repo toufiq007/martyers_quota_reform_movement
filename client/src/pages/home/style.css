@@ -1,17 +1,18 @@
-
-.home_page{
-    background-color: aliceblue;
+.home_page {
+  background-color: #f4f4f4;
 }
-.banner_heading{
-    text-align: center;
-}
-
-.card_container{
-    width: 90%;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 20px;
+.banner_heading {
+  text-align: center;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 5rem;
+  font-weight: 600;
+  letter-spacing: 4px;
 }
 
-
+.card_container {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
