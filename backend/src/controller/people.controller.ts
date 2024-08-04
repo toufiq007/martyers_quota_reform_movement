@@ -71,7 +71,7 @@ const getAllMartyers = async (req: Request, res: Response) => {
 const getOneMartyers = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
-    console.log(userId);
+    // console.log(userId);
     const findPeople = await People.find({ _id: userId });
     res.status(200).json({
       success: true,
@@ -86,6 +86,10 @@ const getOneMartyers = async (req: Request, res: Response) => {
 const updateOneMartyers = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
+    console.log(req.body)
+    const personalImage = req.file
+      ? `http://localhost:5000/uploads/${req.file.filename}`
+      : null;
     const updateData = {
       name: req.body.name,
       age: req.body.age,
@@ -95,13 +99,13 @@ const updateOneMartyers = async (req: Request, res: Response) => {
       institution: req.body.institution,
       causeOfDeath: req.body.causeOfDeath,
       history: req.body.history,
+      personalImage:personalImage
     };
 
     const findUpdatedMartyers = await People.findByIdAndUpdate(
       userId,
       updateData
     );
-    console.log(findUpdatedMartyers);
 
     if (findUpdatedMartyers) {
       res.status(200).json({
@@ -111,6 +115,10 @@ const updateOneMartyers = async (req: Request, res: Response) => {
       });
     }
   } catch (err) {
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong!!",
+    });
     console.log(err);
   }
 };
