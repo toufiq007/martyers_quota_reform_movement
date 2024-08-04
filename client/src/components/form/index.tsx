@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { TextField, Button, Box } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

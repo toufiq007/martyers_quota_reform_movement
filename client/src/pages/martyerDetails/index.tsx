@@ -10,7 +10,7 @@ const MartyerDetails = () => {
   const { isLoading, martyer } = useMartyersDetails(id);
   const navigate = useNavigate();
   const handleGoBack = () => {
-    navigate("/admin/updateMartyer:id");
+    navigate("/");
   };
   const handleEditPage = (id: string) => {
     navigate(`/admin/updateMartyer/${id}`);
