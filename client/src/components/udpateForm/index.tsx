@@ -23,9 +23,9 @@ const UpdateMartyerForm = () => {
   const { id } = useParams();
   const { martyer, isLoading: isMartyerLoading } = useMartyersDetails(id);
   const { register, handleSubmit, reset } = useForm<IForm>();
-    const [isLoading, setIsLoading] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false);
-    const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   // set data to the default values
   useEffect(() => {
@@ -49,7 +49,7 @@ const UpdateMartyerForm = () => {
     setIsLoading(true);
     setIsSuccess(false);
     setIsError(false);
-    console.log(data,'from then onSubmit function');
+    console.log(data, "from then onSubmit function");
     const formData = new FormData();
 
     // append text files
@@ -67,10 +67,13 @@ const UpdateMartyerForm = () => {
       formData.append("personalImage", data.personalImage[0]);
     }
     try {
-      const response = await fetch(`http://localhost:5000/api/updateMartyer/${id}`, {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/updateMartyer/${id}`,
+        {
+          method: "PUT",
+          body: formData,
+        }
+      );
       if (response.ok) {
         setIsLoading(false);
         setIsSuccess(true);
