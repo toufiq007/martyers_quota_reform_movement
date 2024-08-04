@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { TextField, Button, Box } from "@mui/material";
@@ -17,11 +16,13 @@ type IForm = {
   personalImage: string;
 };
 
-const CustomForm = () => {
+const UpdateMartyerForm = () => {
   const { register, handleSubmit, reset } = useForm<IForm>();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);
@@ -160,4 +161,4 @@ const CustomForm = () => {
   );
 };
 
-export default CustomForm;
+export default UpdateMartyerForm;

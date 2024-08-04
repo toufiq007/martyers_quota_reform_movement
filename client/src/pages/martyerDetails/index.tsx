@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/loader";
 import useMartyersDetails from "../../hooks/useMartyersDetails";
-import "./style.css"
+import "./style.css";
 
 const MartyerDetails = () => {
   const { id } = useParams();
@@ -10,9 +10,12 @@ const MartyerDetails = () => {
   const { isLoading, martyer } = useMartyersDetails(id);
   const navigate = useNavigate();
   const handleGoBack = () => {
-    navigate("/");
+    navigate("/admin/updateMartyer:id");
   };
-  console.log(martyer?.people[0]?.name);
+  const handleEditPage = (id: string) => {
+    navigate(`/admin/updateMartyer/${id}`);
+  };
+  console.log(martyer?.people[0]?._id);
   return (
     <>
       {isLoading ? (
@@ -41,13 +44,20 @@ const MartyerDetails = () => {
                 style={{ width: "100%", height: "500px", objectFit: "cover" }}
                 src={`${martyer?.people[0]?.personalImage}`}
               />
-              <div>
+              <div className="martyer_details_button_container">
                 <Button
                   variant="contained"
-                  sx={{ margin: "10px 0", textTransform: "capitalize" }}
+                  sx={{ margin: "10px 10px", textTransform: "capitalize" }}
                   onClick={handleGoBack}
                 >
                   Go Back
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{ margin: "10px 0", textTransform: "capitalize" }}
+                  onClick={() => handleEditPage(martyer?.people[0]?._id)}
+                >
+                  Edit Data
                 </Button>
               </div>
             </div>
