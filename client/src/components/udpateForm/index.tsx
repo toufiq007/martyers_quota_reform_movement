@@ -1,52 +1,50 @@
 import { TextField, Button, Box } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useMartyersDetails from "../../hooks/useMartyersDetails";
 import { useParams } from "react-router-dom";
 import Loader from "../loader";
-
-type IForm = {
-  name: string;
-  age: number;
-  address: string;
-  birthOfDate: string;
-  died: string;
-  institution: string;
-  causeOfDeath: string;
-  history: History;
-  personalImage: string;
-};
+import useUpdateMartyers from "../../hooks/usePostUpdateMartyers";
+import { IForm } from "../../types/IFormType";
 
 const UpdateMartyerForm = () => {
   const { id } = useParams();
   const { martyer, isLoading: isMartyerLoading } = useMartyersDetails(id);
+  const {
+    postUpdateMartyers,
+    setIsLoading,
+    isLoading: isUpdateLoading,
+  } = useUpdateMartyers(id);
   const { register, handleSubmit, reset } = useForm<IForm>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState(false);
 
   // set data to the default values
   useEffect(() => {
     if (martyer) {
       reset({
-        name: martyer.people[0]?.name,
-        age: martyer.people[0]?.age,
-        address: martyer.people[0]?.address,
-        birthOfDate: martyer.people[0]?.birthOfDate,
-        died: martyer.people[0]?.died,
-        institution: martyer.people[0]?.institution,
-        causeOfDeath: martyer.people[0]?.causeOfDeath,
-        history: martyer.people[0]?.history,
+        name: martyer.name,
+        age: martyer.age,
+        address: martyer.address,
+        birthOfDate: martyer.birthOfDate,
+        died: martyer.died,
+        institution: martyer.institution,
+        causeOfDeath: martyer.causeOfDeath,
+        history: martyer.history,
+        // name: martyer?.people[0]?.name,
+        // age: martyer?.people[0]?.age,
+        // address: martyer?.people[0]?.address,
+        // birthOfDate: martyer?.people[0]?.birthOfDate,
+        // died: martyer?.people[0]?.died,
+        // institution: martyer?.people[0]?.institution,
+        // causeOfDeath: martyer?.people[0]?.causeOfDeath,
+        // history: martyer?.people[0]?.history,
       });
     }
   }, [martyer, reset]);
 
-  console.log(martyer?.people[0]?.name, "from then update form ");
+  console.log(martyer?.name, "from the update form function");
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);
-    setIsSuccess(false);
-    setIsError(false);
     console.log(data, "from then onSubmit function");
     const formData = new FormData();
 
@@ -64,29 +62,9 @@ const UpdateMartyerForm = () => {
     if (data.personalImage && data.personalImage.length > 0) {
       formData.append("personalImage", data.personalImage[0]);
     }
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/updateMartyer/${id}`,
-        {
-          method: "PUT",
-          body: formData,
-        }
-      );
-      if (response.ok) {
-        setIsLoading(false);
-        setIsSuccess(true);
-        reset();
-      }
 
-      const result = await response.json();
-
-      console.log(result);
-    } catch (error) {
-      console.error("Error submitting form data:", error);
-      setIsLoading(false);
-      setIsSuccess(false);
-      setIsError(true);
-    }
+    // post your formdata to the backend
+    postUpdateMartyers(formData);
   };
 
   return (
@@ -181,8 +159,7 @@ const UpdateMartyerForm = () => {
           />
 
           <Button variant="contained" type="submit">
-            {/* {isLoading ? "loading..." : "Submit"} */}
-            submit
+            {isUpdateLoading ? "loading..." : "Submit"}
           </Button>
         </Box>
       )}

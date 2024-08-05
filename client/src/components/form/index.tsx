@@ -1,18 +1,7 @@
 import { TextField, Button, Box } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
-type IForm = {
-  name: string;
-  age: number;
-  address: string;
-  birthOfDate: string;
-  died: string;
-  institution: string;
-  causeOfDeath: string;
-  history: History;
-  personalImage: string;
-};
+import { IForm } from "../../types/IFormType";
 
 const CustomForm = () => {
   const { register, handleSubmit, reset } = useForm<IForm>();

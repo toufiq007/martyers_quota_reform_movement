@@ -1,13 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
+import { IForm } from "../types/IFormType";
 
 const useMartyersDetails = (id: any) => {
-  console.log(id);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  console.log(id);
-  const [martyer, setMartyer] = useState(null);
+  const [martyer, setMartyer] = useState<IForm>();
 
   useEffect(() => {
     setIsLoading(true);
@@ -19,7 +17,7 @@ const useMartyersDetails = (id: any) => {
         return res.json();
       })
       .then((data) => {
-        setMartyer(data);
+        setMartyer(data?.user);
         setIsError(false);
         setIsSuccess(false);
       })
