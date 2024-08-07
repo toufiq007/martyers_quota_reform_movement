@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { IForm } from "../types/IFormType";
 
 const useMartyers = () => {
-  const [martyers, setMartyers] = useState([]);
+  const [martyers, setMartyers] = useState<IForm[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -16,7 +17,7 @@ const useMartyers = () => {
         return res.json();
       })
       .then((data) => {
-        setMartyers(data);
+        setMartyers(data?.user);
         setIsSuccess(true);
         setIsLoading(false);
       })
@@ -36,4 +37,4 @@ const useMartyers = () => {
     martyers,
   };
 };
-export default useMartyers
+export default useMartyers;

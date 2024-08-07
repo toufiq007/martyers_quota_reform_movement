@@ -1,7 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "./style.css";
+import { IForm } from "../../types/IFormType";
 
-const Card = ({ singleUser, index }: any) => {
+type ICard = {
+  singleUser: IForm;
+  index: number;
+};
+
+const Card = ({ singleUser, index }: ICard) => {
   const navigate = useNavigate();
   const handleMartyerDetails = (id: string) => {
     navigate(`/martyer/${id}`);

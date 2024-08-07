@@ -15,22 +15,14 @@ const MartyerDetails = () => {
   const handleEditPage = (id: string) => {
     navigate(`/admin/updateMartyer/${id}`);
   };
-  console.log(martyer?.people[0]?._id);
+  console.log(martyer?.name,"from then martyer details page");
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
         <div>
-          <div
-            className="martyers_container"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2,1fr)",
-              width: "90%",
-              margin: "auto",
-            }}
-          >
+          <div className="martyers_container">
             <div
               className="martyers_image"
               style={{
@@ -39,30 +31,22 @@ const MartyerDetails = () => {
                 width: "600px",
               }}
             >
-              <h1 className="martyers_name">{martyer?.people[0]?.name}</h1>
-              <img
-                style={{ width: "100%", height: "500px", objectFit: "cover" }}
-                src={`${martyer?.people[0]?.personalImage}`}
-              />
+              <h1 className="martyers_name">{martyer?.name}</h1>
+              <img src={`${martyer?.personalImage}`} />
               <div className="martyer_details_button_container">
-                <Button
-                  variant="contained"
-                  sx={{ margin: "10px 10px", textTransform: "capitalize" }}
-                  onClick={handleGoBack}
-                >
+                <Button variant="contained" onClick={handleGoBack}>
                   Go Back
                 </Button>
                 <Button
                   variant="contained"
-                  sx={{ margin: "10px 0", textTransform: "capitalize" }}
-                  onClick={() => handleEditPage(martyer?.people[0]?._id)}
+                  onClick={() => handleEditPage(martyer?._id)}
                 >
                   Edit Data
                 </Button>
               </div>
             </div>
-            <div className="martyers_info" style={{ width: "600px" }}>
-              <div className="personal_info" style={{ background: "#ededed" }}>
+            <div className="martyers_info">
+              <div className="personal_info">
                 <p>Profession: </p>
                 <p>Born:</p>
                 <p>Age: </p>
@@ -71,17 +55,7 @@ const MartyerDetails = () => {
                 <p>Education</p>
               </div>
               <div className="short_biography">
-                <p
-                  className="martyers_biography_heading"
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "600",
-                    margin: "10px",
-                    textAlign: "right",
-                  }}
-                >
-                  Short Biography
-                </p>
+                <p className="martyers_biography_heading">Short Biography</p>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Ducimus eius quibusdam perspiciatis suscipit illo veniam

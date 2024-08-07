@@ -1,3 +1,43 @@
+.martyers_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 90%;
+  margin: auto;
+}
+.martyers_container .martyers_image {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.martyers_container .martyers_image img {
+  width: 600px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.martyers_container .martyer_details_button_container button {
+  margin: 10px;
+  text-transform: capitalize;
+}
+
+.martyers_container .martyers_info {
+  width: 600px;
+}
+.martyers_container .martyers_info .personal_info {
+  background: #ededed;
+}
+
+.martyers_container
+  .martyers_info
+  .short_biography
+  .martyers_biography_heading {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px;
+  text-align: right;
+}
+
 .martyers_name {
   font-family: "Bebas Neue", sans-serif;
 }

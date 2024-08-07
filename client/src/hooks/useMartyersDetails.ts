@@ -17,7 +17,7 @@ const useMartyersDetails = (id: any) => {
         return res.json();
       })
       .then((data) => {
-        setMartyer(data?.user);
+        setMartyer(data?.user[0]);
         setIsError(false);
         setIsSuccess(false);
       })
