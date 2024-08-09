@@ -75,7 +75,7 @@ const getOneMartyers = async (req: Request, res: Response) => {
     const findPeople = await People.find({ _id: userId });
     res.status(200).json({
       success: true,
-      people: findPeople,
+      user: findPeople,
     });
   } catch (err) {
     console.log(err);
@@ -86,7 +86,7 @@ const getOneMartyers = async (req: Request, res: Response) => {
 const updateOneMartyers = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
-    console.log(req.body)
+    console.log(req.body);
     const personalImage = req.file
       ? `http://localhost:5000/uploads/${req.file.filename}`
       : null;
@@ -99,7 +99,7 @@ const updateOneMartyers = async (req: Request, res: Response) => {
       institution: req.body.institution,
       causeOfDeath: req.body.causeOfDeath,
       history: req.body.history,
-      personalImage:personalImage
+      personalImage: personalImage,
     };
 
     const findUpdatedMartyers = await People.findByIdAndUpdate(
@@ -123,10 +123,27 @@ const updateOneMartyers = async (req: Request, res: Response) => {
   }
 };
 
+const removeMartyer = async (req: Request, res: Response) => {
+  try {
+    const { martyerId } = req.body;
+    await People.findByIdAndDelete({ _id: martyerId });
+    res.status(201).json({
+      success: true,
+      message: "Martyer deleted successfully",
+    });
+  } catch (err) {
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong!!",
+    });
+  }
+};
+
 export const peopleController = {
   addNewMartyers,
   getAllMartyers,
   getOneMartyers,
   updateOneMartyers,
+  removeMartyer,
   upload,
 };
