@@ -15,5 +15,5 @@ router.put(
   peopleController.upload.single("personalImage"),
   peopleController.updateOneMartyers
 );
-router.delete("/deleteMartyer", peopleController.removeMartyer);
+router.delete("/deleteMartyer/:martyerId", peopleController.removeMartyer);
 export default router;

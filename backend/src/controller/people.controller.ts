@@ -125,7 +125,7 @@ const updateOneMartyers = async (req: Request, res: Response) => {
 
 const removeMartyer = async (req: Request, res: Response) => {
   try {
-    const { martyerId } = req.body;
+    const { martyerId } = req.params;
     await People.findByIdAndDelete({ _id: martyerId });
     res.status(201).json({
       success: true,
