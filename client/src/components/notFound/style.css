@@ -1,0 +1,12 @@
+
+
+.not_found_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}  
+.not_found_container img {
+    width: 80%;
+    height: 500px;
+    object-fit: cover;
+}

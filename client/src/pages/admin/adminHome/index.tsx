@@ -10,13 +10,14 @@ import useMartyers from "../../../hooks/useMartyers";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/loader";
 import { useState } from "react";
+import NotFoundPage from "../../../components/notFound";
 
 const tableHeading = ["Avatar", "Id", "Name", "Institution", "Actions"];
 
 const AdminHome = () => {
   const [refreshPage, setRefreshPage] = useState(false);
   const { isLoading, martyers } = useMartyers(refreshPage);
-  console.log(martyers);
+  console.log(martyers.length < 0);
   const navigate = useNavigate();
   const handleDelete = async (id: string) => {
     try {
