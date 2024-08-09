@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { IForm } from "../types/IFormType";
 
-const useMartyers = () => {
+const useMartyers = (trigger: boolean) => {
   const [martyers, setMartyers] = useState<IForm[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-
 
   useEffect(() => {
     setIsLoading(true);
@@ -29,7 +28,7 @@ const useMartyers = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [trigger]);
 
   return {
     isLoading,

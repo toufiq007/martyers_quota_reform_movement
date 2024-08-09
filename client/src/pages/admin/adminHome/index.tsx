@@ -1,4 +1,3 @@
-import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,14 +7,15 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Avatar, Button } from "@mui/material";
 import useMartyers from "../../../hooks/useMartyers";
-import AbuSayed from "../../../assets/abu_sayed.jpg";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/loader";
+import { useState } from "react";
 
 const tableHeading = ["Avatar", "Id", "Name", "Institution", "Actions"];
 
 const AdminHome = () => {
-  const { isLoading, martyers } = useMartyers();
+  const [refreshPage, setRefreshPage] = useState(false);
+  const { isLoading, martyers } = useMartyers(refreshPage);
   console.log(martyers);
   const navigate = useNavigate();
   const handleDelete = async (id: string) => {
@@ -34,6 +34,7 @@ const AdminHome = () => {
       }
 
       const result = await response.json();
+      setRefreshPage((prevState) => !prevState);
       console.log(result);
     } catch (err) {
       console.log(err);
