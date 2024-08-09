@@ -15,7 +15,7 @@ const MartyerDetails = () => {
   const handleEditPage = (id: string) => {
     navigate(`/admin/updateMartyer/${id}`);
   };
-  console.log(martyer?.name,"from then martyer details page");
+  console.log(martyer?.name, "from then martyer details page");
   return (
     <>
       {isLoading ? (
@@ -23,14 +23,7 @@ const MartyerDetails = () => {
       ) : (
         <div>
           <div className="martyers_container">
-            <div
-              className="martyers_image"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "600px",
-              }}
-            >
+            <div className="martyers_image">
               <h1 className="martyers_name">{martyer?.name}</h1>
               <img src={`${martyer?.personalImage}`} />
               <div className="martyer_details_button_container">
